@@ -75,4 +75,5 @@ plt.show()
 # Calcul RMSE
 import math  
 from sklearn.metrics import mean_squared_error
-math.sqrt(mean_squared_error(ytest, predictions))
+ypred = linear.predict(xtest)
+math.sqrt(mean_squared_error(ytest, ypred)/1000)

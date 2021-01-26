@@ -134,6 +134,7 @@ X = days
 y = df_adj_close
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=1)
 y_pred = rbf_svr.predict(X_test)
+
 import math  
 from sklearn.metrics import mean_squared_error
 print(math.sqrt(mean_squared_error(y_test, y_pred)/100))
