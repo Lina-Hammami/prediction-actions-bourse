@@ -84,11 +84,10 @@ for day in df_days:
 for adj_close_price in df_adj_close:
     adj_close_prices.append(float(adj_close_price))
 
-
 # In[57]:
 
 
-# créer les 3 modèles SVR 
+# créer les 3 modèles SVR (SVM regresseur)
 
 # créer et trainer un modèle svr en uilisant un kernel linéaire 
 lin_svr = SVR(kernel='linear', C=100.0)
@@ -127,9 +126,16 @@ print('Prédiction avec un SVR RBF :', rbf_svr.predict(day) )
 
 
 # In[60]:
+# Calcul d'erreur
+
+from sklearn.model_selection import train_test_split
+# Split data
+X = days
+y = df_adj_close
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=1)
+y_pred = rbf_svr.predict(X_test)
 import math  
 from sklearn.metrics import mean_squared_error
-math.sqrt(mean_squared_error(y_test, prediction))
+print(math.sqrt(mean_squared_error(y_test, y_pred)/100))
 
 # In[ ]:
-

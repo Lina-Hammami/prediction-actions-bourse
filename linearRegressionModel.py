@@ -8,7 +8,7 @@ Created on Tue Jan 19 06:33:12 2021
 import pandas as pd
 
 pathto = '/Users/hamem/Downloads/prediction-action-bourse/'
-dataset = pd.read_csv(pathto+'stock_prices.csv')
+dataset = pd.read_csv(pathto+'newest_stock_prices.csv')
 print(dataset.head())
 print("trainging days =",dataset.shape)
 dataset = dataset[-200:]
@@ -40,6 +40,7 @@ print(x)
 #To create a target dataset (y) and convert it to a numpy array and get all of the target values except the last ‘x’ rows days:
 y = np.array(dataset["Prediction"])[:-futureDays]
 print(y)
+
 #Split the data into 75% training and 25% testing
 from sklearn.model_selection import train_test_split
 xtrain, xtest, ytrain, ytest = train_test_split(x, y, test_size=0.25)
@@ -72,4 +73,6 @@ plt.legend(["Original", "Valid", "Predictions"])
 plt.show()
 
 # Calcul RMSE
-
+import math  
+from sklearn.metrics import mean_squared_error
+math.sqrt(mean_squared_error(ytest, predictions))

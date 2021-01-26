@@ -59,3 +59,7 @@ plt.plot(dataset["Close"])
 plt.plot(valid[["Close", "Predictions"]])
 plt.legend(["Original", "Valid", "Predictions"])
 plt.show()
+
+import math  
+from sklearn.metrics import mean_squared_error
+math.sqrt(mean_squared_error(ytest, predictions))
